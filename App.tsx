@@ -10,6 +10,8 @@
 
 import React from 'react';
 import {SafeAreaView} from 'react-native';
+import { initialWindowMetrics, SafeAreaProvider } from "react-native-safe-area-context";
+import './app/i18n';
 
 const App = () => {
   return <SafeAreaView />;
