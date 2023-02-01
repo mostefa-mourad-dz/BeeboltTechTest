@@ -1,19 +1,24 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
-
 import React from 'react';
-import {SafeAreaView} from 'react-native';
 import { initialWindowMetrics, SafeAreaProvider } from "react-native-safe-area-context";
 import './app/i18n';
+import { AppNavigator } from './app/routes/AppNavigator';
 
-const App = () => {
-  return <SafeAreaView />;
+export const NAVIGATION_PERSISTENCE_KEY = "NAVIGATION_STATE";
+
+interface AppProps {
+  hideSplashScreen: () => Promise<void>
+}
+
+const App = (props: AppProps) => {
+
+  const { hideSplashScreen } = props;
+
+  return (
+    <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+      {/* <ErrorBoundary catchErrors={Config.catchErrors}> */}
+        <AppNavigator/>
+      {/* </ErrorBoundary> */}
+    </SafeAreaProvider>
+  );
 };
 export default App;
