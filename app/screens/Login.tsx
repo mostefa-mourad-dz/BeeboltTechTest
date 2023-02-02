@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 
 type LoginProps = {};
 
-export const Login: React.FC<LoginProps> = ({ }) => {
+export const Login: React.FC<LoginProps> = ({}) => {
   return (
     <View style={styles.container}>
       <Text>Login</Text>
@@ -16,6 +16,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    height:'100%',
+    height: '100%',
   },
 });

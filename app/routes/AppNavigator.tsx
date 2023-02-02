@@ -5,68 +5,57 @@
  * and a "main" flow which the user will use once logged in.
  */
 import {
-    DarkTheme,
-    DefaultTheme,
-    NavigationContainer,
-  } from "@react-navigation/native";
-  import { createNativeStackNavigator } from "@react-navigation/native-stack";
-  import { StackScreenProps } from "@react-navigation/stack";
-  import React from "react";
-  import { useColorScheme } from "react-native";
-  import Config from "../config";
-  import {
-    Login,
-    Welcome,
-  } from "../screens";
-  export type AppStackParamList = {
-    Welcome: undefined;
-    Login: undefined;
-  }
-  
-  const exitRoutes = Config.exitRoutes
-  
-  export type AppStackScreenProps<T extends keyof AppStackParamList> = StackScreenProps<
-    AppStackParamList,
-    T
-  >
-  
-  const Stack = createNativeStackNavigator<AppStackParamList>()
-  
-  const AppStack = function AppStack() {
-    
-    const isAuthenticated = false;
-    console.log(isAuthenticated);
+  DarkTheme,
+  DefaultTheme,
+  NavigationContainer,
+} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {StackScreenProps} from '@react-navigation/stack';
+import React from 'react';
+import {useColorScheme} from 'react-native';
+import {Login} from '../screens';
+import {MainNavigator} from './MainNavigator';
+export type AppStackParamList = {
+  Main: undefined;
+  Login: undefined;
+};
 
-    return (
-      <Stack.Navigator
-        screenOptions={{ headerShown: false }}
-        initialRouteName={isAuthenticated ? "Welcome" : "Login"}
-      >
-        {isAuthenticated ? (
-          <>
-            <Stack.Screen name="Welcome" component={Welcome} />
-          </>
-        ) : (
-          <>
-            <Stack.Screen name="Login" component={Login} />
-          </>
-        )}
-      </Stack.Navigator>
-    )
-  };
-  
-  interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> {}
-  
-  export const AppNavigator = function AppNavigator(props: NavigationProps) {
-    const colorScheme = useColorScheme();
-  
-    return (
-      <NavigationContainer
-        theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-        {...props}
-      >
-        <AppStack />
-      </NavigationContainer>
-    )
-  };
-  
+export type AppStackScreenProps<T extends keyof AppStackParamList> =
+  StackScreenProps<AppStackParamList, T>;
+
+const Stack = createNativeStackNavigator<AppStackParamList>();
+
+const AppStack = function AppStack() {
+  const isAuthenticated = true;
+
+  return (
+    <Stack.Navigator
+      screenOptions={{headerShown: false}}
+      initialRouteName={isAuthenticated ? 'Main' : 'Login'}>
+      {isAuthenticated ? (
+        <>
+          <Stack.Screen name="Main" component={MainNavigator} />
+        </>
+      ) : (
+        <>
+          <Stack.Screen name="Login" component={Login} />
+        </>
+      )}
+    </Stack.Navigator>
+  );
+};
+
+interface NavigationProps
+  extends Partial<React.ComponentProps<typeof NavigationContainer>> {}
+
+export const AppNavigator = function AppNavigator(props: NavigationProps) {
+  const colorScheme = useColorScheme();
+
+  return (
+    <NavigationContainer
+      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+      {...props}>
+      <AppStack />
+    </NavigationContainer>
+  );
+};
