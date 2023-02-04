@@ -5,6 +5,7 @@ import {PAGES} from '../constants/pages';
 import {useStackNavigation} from '../hooks/useNavigation';
 import {IconButton} from '../components/IconButton';
 import {EmptyScreen} from '../screens';
+import {StyleSheet} from 'react-native';
 
 const {Navigator, Screen} = createBottomTabNavigator();
 //
@@ -23,17 +24,22 @@ const BottomTabBar: React.FC<BottomTabsProps> = ({state}) => {
     },
     {
       id: 1,
-      icon: 'trending-up-outline',
+      icon: 'file-text-outline',
       path: PAGES.ORDERS,
     },
     {
       id: 2,
-      icon: 'search-outline',
-      path: PAGES.CHAT,
+      icon: 'plus-square',
+      path: PAGES.ADD_ORDER,
     },
     {
       id: 3,
-      icon: 'paper-plane-outline',
+      icon: 'message-circle-outline',
+      path: PAGES.CHAT,
+    },
+    {
+      id: 4,
+      icon: 'person-outline',
       path: PAGES.PROFILE,
     },
   ];
@@ -41,6 +47,7 @@ const BottomTabBar: React.FC<BottomTabsProps> = ({state}) => {
   return (
     <BottomNavigation
       selectedIndex={state?.index}
+      style={styles.container}
       onSelect={index => {
         mainNavigation({screen: routes[index].path});
       }}>
@@ -51,7 +58,7 @@ const BottomTabBar: React.FC<BottomTabsProps> = ({state}) => {
             icon={
               <IconButton
                 name={route.icon}
-                fill={route.id === state?.index ? '#FFF' : '#0E0635'}
+                fill={route.id === state?.index ? '#3366ff' : '#0E0635'}
               />
             }
           />
@@ -71,7 +78,14 @@ export const MainNavigator = () => (
     tabBar={props => <BottomTabBar {...props} />}>
     <Screen name={PAGES.HOME} component={EmptyScreen} />
     <Screen name={PAGES.ORDERS} component={EmptyScreen} />
+    <Screen name={PAGES.ADD_ORDER} component={EmptyScreen} />
     <Screen name={PAGES.CHAT} component={EmptyScreen} />
     <Screen name={PAGES.PROFILE} component={EmptyScreen} />
   </Navigator>
 );
+
+const styles = StyleSheet.create({
+  container: {
+    paddingBottom: 30,
+  },
+});

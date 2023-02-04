@@ -3,6 +3,7 @@ export const PAGES = {
   HOME: 'Home',
   ORDERS: 'Orders',
   PROFILE: 'Profile',
+  ADD_ORDER: 'AddOrder',
   CHAT: 'Chat',
   MAIN: 'Main',
 };
