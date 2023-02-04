@@ -1,7 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {CustomIcon} from './CustomIcon';
-import {IconButton} from './IconButton';
 
 export type ProfileListItemProps = {
   icon: string;

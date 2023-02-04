@@ -1,3 +1,4 @@
+import {Chat} from '../../types/chat';
 import {Delivery} from '../../types/delivery';
 
 export const delivery: Delivery = {
@@ -14,4 +15,16 @@ export const delivery: Delivery = {
     companyName: 'Parcel Delivery Partner',
     profilePic: 'https://picsum.photos/200/300',
   },
+};
+
+export const chat: Chat = {
+  id: '1',
+  driver: {
+    id: '1',
+    fullName: 'Jenny Wilson',
+    companyName: 'Parcel Delivery Partner',
+    profilePic: 'https://picsum.photos/200/300',
+  },
+  lastChatDate: new Date('2023-02-04'),
+  lastChatText: 'Your parcel order done',
 };
