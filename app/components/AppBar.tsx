@@ -2,6 +2,7 @@ import {Icon, Input} from '@ui-kitten/components';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {CustomAvatar} from './CustomAvatar';
+import {CustomIcon} from './CustomIcon';
 import {IconButton} from './IconButton';
 
 type AppBarProps = {
@@ -38,9 +39,7 @@ export const AppBar: React.FC<AppBarProps> = ({back, title}) => {
             </View>
           </View>
         )}
-        <View style={styles.iconBg}>
-          <IconButton name="bell" fill="white" animation="shake" />
-        </View>
+        <CustomIcon icon="bell" color="white" size={40} bgColor="#4D579E" />
       </View>
 
       {isHome && (
@@ -64,13 +63,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     height: 120,
     width: '100%',
-  },
-  iconBg: {
-    height: 40,
-    width: 40,
-    backgroundColor: '#4D579E',
-    borderRadius: 5,
-    padding: 10,
   },
   leftContainer: {
     flexDirection: 'row',

@@ -58,7 +58,7 @@ const BottomTabBar: React.FC<BottomTabsProps> = ({state}) => {
             icon={
               <IconButton
                 name={route.icon}
-                fill={route.id === state?.index ? '#3366ff' : '#0E0635'}
+                fill={route.id === state?.index ? '#3366ff' : 'grey'}
               />
             }
           />
