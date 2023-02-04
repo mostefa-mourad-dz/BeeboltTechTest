@@ -6,6 +6,7 @@ import {useStackNavigation} from '../hooks/useNavigation';
 import {IconButton} from '../components/IconButton';
 import {EmptyScreen} from '../screens';
 import {StyleSheet} from 'react-native';
+import {Profile} from '../screens/Profile';
 
 const {Navigator, Screen} = createBottomTabNavigator();
 //
@@ -80,7 +81,7 @@ export const MainNavigator = () => (
     <Screen name={PAGES.ORDERS} component={EmptyScreen} />
     <Screen name={PAGES.ADD_ORDER} component={EmptyScreen} />
     <Screen name={PAGES.CHAT} component={EmptyScreen} />
-    <Screen name={PAGES.PROFILE} component={EmptyScreen} />
+    <Screen name={PAGES.PROFILE} component={Profile} />
   </Navigator>
 );
 
