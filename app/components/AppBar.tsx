@@ -1,5 +1,7 @@
+import {Icon, Input} from '@ui-kitten/components';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {CustomAvatar} from './CustomAvatar';
 import {IconButton} from './IconButton';
 
 type AppBarProps = {
@@ -8,35 +10,50 @@ type AppBarProps = {
 };
 
 export const AppBar: React.FC<AppBarProps> = ({back, title}) => {
-  const isHome = title === 'Home' || true;
+  const isHome = title === 'Home';
   const user = {
-    profilePic: '',
+    profilePic: 'https://picsum.photos/200/300',
     fullName: 'Robert Smith',
   };
   return (
-    <View style={styles.container}>
-      {isHome ? (
-        <View style={styles.leftContainer}>
-          {/* <CustomAvatar url={user?.profilePic} /> */}
-          <View style={styles.welcomeTextContainer}>
-            <Text style={styles.fullName}>{user?.fullName}</Text>
-            <Text style={styles.welcome}>Welcome back!</Text>
+    <>
+      <View style={styles.container}>
+        {isHome ? (
+          <View style={styles.leftContainer}>
+            <CustomAvatar url={user?.profilePic} />
+            <View style={styles.welcomeTextContainer}>
+              <Text style={styles.fullName}>{user?.fullName}</Text>
+              <Text style={styles.welcome}>Welcome back!</Text>
+            </View>
           </View>
+        ) : (
+          <View style={styles.leftContainer}>
+            <View style={styles.backBtnStyle}>
+              {back && (
+                <IconButton name="arrow-ios-back-outline" fill="white" />
+              )}
+            </View>
+            <View style={styles.titleContainerStyle}>
+              <Text style={styles.titleStyle}>{title}</Text>
+            </View>
+          </View>
+        )}
+        <View style={styles.iconBg}>
+          <IconButton name="bell" fill="white" animation="shake" />
         </View>
-      ) : (
-        <View style={styles.leftContainer}>
-          <View style={styles.backBtnStyle}>
-            {back && <IconButton name="arrow-ios-back-outline" fill="white" />}
-          </View>
-          <View style={styles.titleContainerStyle}>
-            <Text style={styles.titleStyle}>{title}</Text>
-          </View>
+      </View>
+
+      {isHome && (
+        <View style={styles.inputContainer}>
+          <Input
+            style={styles.input}
+            size="large"
+            placeholder="Enter tracking number"
+            accessoryLeft={<Icon name="search-outline" fill={'grey'} />}
+          />
         </View>
       )}
-      <View style={styles.iconBg}>
-        <IconButton name="bell" fill="white" animation="shake" />
-      </View>
-    </View>
+    </>
   );
 };
 
@@ -75,14 +92,27 @@ const styles = StyleSheet.create({
   },
   welcomeTextContainer: {
     flexDirection: 'column',
+    marginLeft: 10,
   },
   fullName: {
     fontSize: 16,
-    color: 'grey',
+    color: 'white',
+    opacity: 0.6,
   },
   welcome: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: '600',
     color: 'white',
+  },
+  inputContainer: {
+    paddingHorizontal: 10,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: -20,
+    marginBottom: 20,
+  },
+  input: {
+    width: '80%',
+    borderRadius: 10,
   },
 });
