@@ -1,13 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {DefaultLayout} from '../layouts/default';
 
 type EmptyProps = {};
 
-export const EmptyScreen: React.FC<EmptyProps> = ({ }) => {
+export const EmptyScreen: React.FC<EmptyProps> = ({}) => {
   return (
-    <View style={styles.container}>
+    <DefaultLayout>
       <Text>Empty Screen</Text>
-    </View>
+    </DefaultLayout>
   );
 };
 
