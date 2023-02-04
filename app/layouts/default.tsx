@@ -1,5 +1,6 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet, View} from 'react-native';
+import {AppBar} from '../components/AppBar';
 
 type LayoutProps = {
   children: any;
@@ -10,7 +11,9 @@ export const DefaultLayout: React.FC<LayoutProps> = ({children}) => {
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        <View style={{minHeight: MIN_APP_BAR_HEIGHT}}>{/* App Bar */}</View>
+        <View style={{minHeight: MIN_APP_BAR_HEIGHT}}>
+          <AppBar back={true} title={'Empty Screen'} />
+        </View>
         <View style={styles.rectangle}>{children}</View>
       </View>
     </SafeAreaView>
