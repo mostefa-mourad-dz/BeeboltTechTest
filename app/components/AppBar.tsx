@@ -8,7 +8,7 @@ type AppBarProps = {
 };
 
 export const AppBar: React.FC<AppBarProps> = ({back, title}) => {
-  const isHome = title === 'Home';
+  const isHome = title === 'Home' || true;
   const user = {
     profilePic: '',
     fullName: 'Robert Smith',
@@ -16,7 +16,7 @@ export const AppBar: React.FC<AppBarProps> = ({back, title}) => {
   return (
     <View style={styles.container}>
       {isHome ? (
-        <View>
+        <View style={styles.leftContainer}>
           {/* <CustomAvatar url={user?.profilePic} /> */}
           <View style={styles.welcomeTextContainer}>
             <Text style={styles.fullName}>{user?.fullName}</Text>
@@ -77,11 +77,12 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   fullName: {
-    fontSize: 18,
-    color: 'white',
+    fontSize: 16,
+    color: 'grey',
   },
   welcome: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold',
+    color: 'white',
   },
 });
