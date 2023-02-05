@@ -1,5 +1,5 @@
-import { TranslateOptions } from "i18n-js/typings";
-import i18n, { TxKeyPath } from "./i18n";
+import {TranslateOptions} from 'i18n-js/typings';
+import i18n, {TxKeyPath} from './i18n';
 
 /**
  * Translates text.

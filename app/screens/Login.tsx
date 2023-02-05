@@ -13,7 +13,6 @@ import {Button, Input} from '@ui-kitten/components';
 import {IconButton} from '../components/IconButton';
 import {UserContext} from '../contexts/UserContext';
 import {useStackNavigation} from '../hooks/useNavigation';
-import {PAGES} from '../constants/pages';
 
 type LoginProps = {};
 
@@ -29,17 +28,18 @@ const initialValues = {
 
 export const Login: React.FC<LoginProps> = ({}) => {
   const [secureTextEntry, setSecureTextEntry] = React.useState(true);
-  const {mainNavigation} = useStackNavigation();
+  const {resetNavigation} = useStackNavigation();
   const {setUser} = useContext(UserContext);
   const login = (email: string, password: string) => {
     setUser({
       id: '1',
       email: email,
       accessToken: password,
-      firstName: 'Bee',
-      lastName: 'Bolt',
+      first_name: 'Bee',
+      last_name: 'Bolt',
+      profilePic: 'https://picsum.photos/200/300',
     });
-    mainNavigation({reset: true, screen: PAGES.HOME});
+    resetNavigation();
   };
   return (
     <DefaultLayout>

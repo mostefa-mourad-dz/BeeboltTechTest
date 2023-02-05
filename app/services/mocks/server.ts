@@ -1,15 +1,22 @@
-import {createServer} from 'miragejs';
+import {createServer, Model} from 'miragejs';
+import {orderSeeder} from './seeds';
 
 export default function makeServer() {
-  const server = createServer({
+  return createServer({
+    models: {
+      order: Model,
+    },
     routes() {
       this.urlPrefix = 'http://localhost:3030';
-      this.get('/api/recent-activity', () => {
+      this.namespace = 'api';
+      this.get('/recent-activity', (schema, _request) => {
         return {
-          orders: [],
+          orders: schema.all('order').models,
         };
       });
     },
+    seeds(server) {
+      orderSeeder(server);
+    },
   });
-  return server;
 }

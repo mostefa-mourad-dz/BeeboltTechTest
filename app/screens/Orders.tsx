@@ -2,9 +2,9 @@ import React from 'react';
 import {View} from 'react-native';
 import {DefaultLayout} from '../layouts/default';
 
-type EmptyProps = {};
+type OrderProps = {};
 
-export const EmptyScreen: React.FC<EmptyProps> = ({}) => {
+export const OrdersScreen: React.FC<OrderProps> = ({}) => {
   return (
     <DefaultLayout>
       <View />

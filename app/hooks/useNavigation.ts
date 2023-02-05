@@ -19,6 +19,7 @@ type rootNavigationProps = {
 
 export const useStackNavigation = () => {
   const navigation = useNavigation();
+  const route = useRoute();
 
   const navigateTo = ({
     stack,
@@ -60,8 +61,6 @@ export const useStackNavigation = () => {
     navigation.navigate(stack, {screen: screen, params: params});
   };
 
-  const route = useRoute();
-
   return {
     mainNavigation: ({
       screen,
@@ -71,7 +70,9 @@ export const useStackNavigation = () => {
     }: navigationProps) => {
       navigateTo({stack: PAGES.MAIN, screen, params, reset, push});
     },
-
+    resetNavigation: () => {
+      navigation.reset({index: 0});
+    },
     goBackNavigation: () => {
       if (navigation.canGoBack()) {
         navigation.goBack();

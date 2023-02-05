@@ -1,26 +1,14 @@
 import React from 'react';
 import {Card} from '@ui-kitten/components';
-import {Delivery} from '../types/delivery';
+import {Order} from '../types/order';
 import {StyleSheet, Text, View} from 'react-native';
 import {DriverCard} from './DriverCard';
 import {format} from 'date-fns';
 import {IconButton} from './IconButton';
+import {color} from '../utils/statusColor';
 
 type DeliveryCardProps = {
-  delivery: Delivery;
-};
-
-const color = (status: string) => {
-  switch (status) {
-    case 'created':
-      return '#C76542';
-    case 'recieved':
-      return '#33BA60';
-    case 'cancelled':
-      return '#F30B0F';
-    default:
-      return '#2E3A8D';
-  }
+  delivery: Order;
 };
 
 export const DeliveryCard: React.FC<DeliveryCardProps> = ({delivery}) => {
@@ -42,7 +30,7 @@ export const DeliveryCard: React.FC<DeliveryCardProps> = ({delivery}) => {
         <View>
           <Text style={styles.state}>{delivery?.departureState}</Text>
           <Text style={styles.date}>{`${format(
-            delivery?.departureDate,
+            new Date(delivery?.departureDate),
             'dd MMM yyyy',
           )}`}</Text>
         </View>
@@ -52,7 +40,7 @@ export const DeliveryCard: React.FC<DeliveryCardProps> = ({delivery}) => {
         <View>
           <Text style={styles.state}>{delivery?.arrivalState}</Text>
           <Text style={styles.date}>{`${format(
-            delivery?.arrivalDate,
+            new Date(delivery?.arrivalDate),
             'dd MMM yyyy',
           )}`}</Text>
         </View>
@@ -65,6 +53,7 @@ export const DeliveryCard: React.FC<DeliveryCardProps> = ({delivery}) => {
 const styles = StyleSheet.create({
   container: {
     elevation: 5,
+    marginVertical: 5,
   },
   header: {
     flexDirection: 'row',

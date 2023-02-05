@@ -1,7 +1,7 @@
 import {Chat} from '../../types/chat';
-import {Delivery} from '../../types/delivery';
+import {Order} from '../../types/order';
 
-export const delivery: Delivery = {
+export const delivery: Order = {
   id: '1',
   state: 'Processing',
   trackingNumber: '1234',

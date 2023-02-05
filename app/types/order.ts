@@ -1,6 +1,6 @@
 import {Driver} from './driver';
 
-export interface Delivery {
+export interface Order {
   id: string;
   trackingNumber: string;
   state: string;

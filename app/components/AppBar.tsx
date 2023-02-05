@@ -1,6 +1,7 @@
 import {Icon, Input} from '@ui-kitten/components';
-import React from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {UserContext} from '../contexts/UserContext';
 import {useStackNavigation} from '../hooks/useNavigation';
 import {CustomAvatar} from './CustomAvatar';
 import {CustomIcon} from './CustomIcon';
@@ -20,11 +21,7 @@ type AppBarTypeProps = {
 };
 
 export const AppBar: React.FC<AppBarProps> = ({back, title}) => {
-  const user = {
-    profilePic: 'https://picsum.photos/200/300',
-    fullName: 'Robert Smith',
-  };
-
+  const {user} = useContext(UserContext);
   const {getCurrentRouteName} = useStackNavigation();
   const appBarType: AppBarTypeProps = (() => {
     switch (getCurrentRouteName()) {
@@ -52,7 +49,9 @@ export const AppBar: React.FC<AppBarProps> = ({back, title}) => {
               <View style={styles.leftContainer}>
                 <CustomAvatar url={user?.profilePic} />
                 <View style={styles.welcomeTextContainer}>
-                  <Text style={styles.fullName}>{user?.fullName}</Text>
+                  <Text style={styles.fullName}>{`${
+                    user?.first_name + ' ' + user?.last_name
+                  }`}</Text>
                   <Text style={styles.welcome}>Welcome back!</Text>
                 </View>
               </View>
