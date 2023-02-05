@@ -9,6 +9,7 @@ import {StyleSheet} from 'react-native';
 import {Profile} from '../screens/Profile';
 import {HomeScreen} from '../screens/Home';
 import {OrdersScreen} from '../screens/Orders';
+import {ChatScreen} from '../screens/Chat';
 
 const {Navigator, Screen} = createBottomTabNavigator();
 //
@@ -82,7 +83,7 @@ export const MainNavigator = () => (
     <Screen name={PAGES.HOME} component={HomeScreen} />
     <Screen name={PAGES.ORDERS} component={OrdersScreen} />
     <Screen name={PAGES.ADD_ORDER} component={EmptyScreen} />
-    <Screen name={PAGES.CHAT} component={EmptyScreen} />
+    <Screen name={PAGES.CHAT} component={ChatScreen} />
     <Screen name={PAGES.PROFILE} component={Profile} />
   </Navigator>
 );

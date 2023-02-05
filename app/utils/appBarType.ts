@@ -6,6 +6,7 @@ export type AppBarTypeProps = {
   back?: boolean;
   home?: boolean;
   chat?: boolean;
+  search?: boolean;
   driver?: boolean;
 };
 
@@ -25,6 +26,12 @@ export const getAppBarType = (route: string): AppBarTypeProps => {
     case PAGES.ORDERS:
       return {
         title: 'History',
+        show: true,
+      };
+    case PAGES.CHAT:
+      return {
+        title: 'Messages',
+        search: true,
         show: true,
       };
     default:

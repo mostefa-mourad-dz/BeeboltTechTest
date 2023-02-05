@@ -107,3 +107,83 @@ export const orderSeeder = (server: Server) => {
     },
   });
 };
+
+export const chatSeeder = (server: Server) => {
+  server.create('chat', {
+    id: '1',
+    driver: {
+      id: '1',
+      fullName: 'Jenny Wilson',
+      companyName: 'Parcel Delivery Partner',
+      profilePic: 'https://picsum.photos/200/300',
+    },
+    lastChatDate: new Date('2023-02-04'),
+    lastChatText: 'Your parcel order done',
+  });
+  server.create('chat', {
+    id: '1',
+    driver: {
+      id: '1',
+      fullName: 'Jenny Wilson',
+      companyName: 'Parcel Delivery Partner',
+      profilePic: 'https://picsum.photos/200/300',
+    },
+    lastChatDate: new Date('2023-02-06'),
+    lastChatText: 'Your parcel order done',
+  });
+  server.create('chat', {
+    id: '2',
+    driver: {
+      id: '1',
+      fullName: 'Jenny Wilson',
+      companyName: 'Parcel Delivery Partner',
+      profilePic: 'https://picsum.photos/200/300',
+    },
+    lastChatDate: new Date('2023-02-03'),
+    lastChatText: 'Your parcel order done',
+  });
+  server.create('chat', {
+    id: '3',
+    driver: {
+      id: '1',
+      fullName: 'Jenny Wilson',
+      companyName: 'Parcel Delivery Partner',
+      profilePic: 'https://picsum.photos/200/300',
+    },
+    lastChatDate: new Date('2023-02-05'),
+    lastChatText: 'Your parcel order done',
+  });
+  server.create('chat', {
+    id: '4',
+    driver: {
+      id: '1',
+      fullName: 'Jenny Wilson',
+      companyName: 'Parcel Delivery Partner',
+      profilePic: 'https://picsum.photos/200/300',
+    },
+    lastChatDate: new Date('2023-02-04'),
+    lastChatText: 'Your parcel order done',
+  });
+  server.create('chat', {
+    id: '5',
+    driver: {
+      id: '1',
+      fullName: 'Jenny Wilson',
+      companyName: 'Parcel Delivery Partner',
+      profilePic: 'https://picsum.photos/200/300',
+    },
+    lastChatDate: new Date('2023-01-31'),
+    lastChatText: 'Your parcel order done',
+  });
+  server.create('chat', {
+    id: '6',
+    driver: {
+      id: '1',
+      fullName: 'Jenny Wilson',
+      companyName: 'Parcel Delivery Partner',
+      profilePic: 'https://picsum.photos/200/300',
+    },
+    lastChatDate: new Date('2023-02-01'),
+    lastChatText: 'Your parcel order done',
+  });
+};

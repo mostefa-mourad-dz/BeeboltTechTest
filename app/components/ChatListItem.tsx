@@ -12,7 +12,7 @@ type ChatListItemProps = {
 
 export const ChatListItem: React.FC<ChatListItemProps> = ({chat}) => {
   return (
-    <Card>
+    <Card style={styles.card}>
       <View style={styles.container}>
         <View style={styles.container}>
           <CustomAvatar url={chat?.driver?.profilePic} size={'giant'} />
@@ -23,7 +23,7 @@ export const ChatListItem: React.FC<ChatListItemProps> = ({chat}) => {
         </View>
         <View style={styles.actionContainer}>
           <Text style={styles.date}>{`${formatDistanceToNow(
-            chat?.lastChatDate,
+            new Date(chat?.lastChatDate),
           )}`}</Text>
           <CustomIcon bgColor="transparent" icon="done-all-outline" />
         </View>
@@ -33,12 +33,15 @@ export const ChatListItem: React.FC<ChatListItemProps> = ({chat}) => {
 };
 
 const styles = StyleSheet.create({
+  card: {
+    marginVertical: 10,
+  },
   container: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     widh: '100%',
-    height: 60,
+    height: 50,
   },
   mainContainer: {
     marginLeft: 10,

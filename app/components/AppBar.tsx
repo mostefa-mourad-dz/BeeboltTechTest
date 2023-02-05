@@ -44,12 +44,14 @@ export const AppBar: React.FC<AppBarProps> = ({}) => {
             <CustomIcon icon="bell" color="white" size={40} bgColor="#4D579E" />
           </View>
 
-          {appBarType?.home && (
+          {(appBarType?.home || appBarType?.search) && (
             <View style={styles.inputContainer}>
               <Input
                 style={styles.input}
                 size="large"
-                placeholder="Enter tracking number"
+                placeholder={
+                  appBarType?.home ? 'Enter tracking number' : 'search'
+                }
                 accessoryLeft={<Icon name="search-outline" fill={'grey'} />}
               />
             </View>
