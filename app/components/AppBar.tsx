@@ -1,6 +1,7 @@
 import {Icon, Input} from '@ui-kitten/components';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {useStackNavigation} from '../hooks/useNavigation';
 import {CustomAvatar} from './CustomAvatar';
 import {CustomIcon} from './CustomIcon';
 import {IconButton} from './IconButton';
@@ -10,46 +11,77 @@ type AppBarProps = {
   title: string;
 };
 
+type AppBarTypeProps = {
+  show: boolean;
+  back?: boolean;
+  home?: boolean;
+  chat?: boolean;
+  driver?: boolean;
+};
+
 export const AppBar: React.FC<AppBarProps> = ({back, title}) => {
   const isHome = title === 'Home';
   const user = {
     profilePic: 'https://picsum.photos/200/300',
     fullName: 'Robert Smith',
   };
+
+  const {getCurrentRouteName} = useStackNavigation();
+  const appBarType: AppBarTypeProps = (() => {
+    switch (getCurrentRouteName()) {
+      case 'Login':
+        return {
+          show: false,
+        };
+
+      default:
+        return {
+          show: true,
+        };
+    }
+  })();
   return (
     <>
-      <View style={styles.container}>
-        {isHome ? (
-          <View style={styles.leftContainer}>
-            <CustomAvatar url={user?.profilePic} />
-            <View style={styles.welcomeTextContainer}>
-              <Text style={styles.fullName}>{user?.fullName}</Text>
-              <Text style={styles.welcome}>Welcome back!</Text>
-            </View>
+      {appBarType?.show ? (
+        <>
+          <View style={styles.container}>
+            {isHome ? (
+              <View style={styles.leftContainer}>
+                <CustomAvatar url={user?.profilePic} />
+                <View style={styles.welcomeTextContainer}>
+                  <Text style={styles.fullName}>{user?.fullName}</Text>
+                  <Text style={styles.welcome}>Welcome back!</Text>
+                </View>
+              </View>
+            ) : (
+              <View style={styles.leftContainer}>
+                <View style={styles.backBtnStyle}>
+                  {back && (
+                    <IconButton name="arrow-ios-back-outline" fill="white" />
+                  )}
+                </View>
+                <View style={styles.titleContainerStyle}>
+                  <Text style={styles.titleStyle}>{title}</Text>
+                </View>
+              </View>
+            )}
+            <CustomIcon icon="bell" color="white" size={40} bgColor="#4D579E" />
           </View>
-        ) : (
-          <View style={styles.leftContainer}>
-            <View style={styles.backBtnStyle}>
-              {back && (
-                <IconButton name="arrow-ios-back-outline" fill="white" />
-              )}
-            </View>
-            <View style={styles.titleContainerStyle}>
-              <Text style={styles.titleStyle}>{title}</Text>
-            </View>
-          </View>
-        )}
-        <CustomIcon icon="bell" color="white" size={40} bgColor="#4D579E" />
-      </View>
 
-      {isHome && (
-        <View style={styles.inputContainer}>
-          <Input
-            style={styles.input}
-            size="large"
-            placeholder="Enter tracking number"
-            accessoryLeft={<Icon name="search-outline" fill={'grey'} />}
-          />
+          {isHome && (
+            <View style={styles.inputContainer}>
+              <Input
+                style={styles.input}
+                size="large"
+                placeholder="Enter tracking number"
+                accessoryLeft={<Icon name="search-outline" fill={'grey'} />}
+              />
+            </View>
+          )}
+        </>
+      ) : (
+        <View style={styles.loginTitleContainer}>
+          <Text style={styles.loginTitle}>Welcome to Beebolt!</Text>
         </View>
       )}
     </>
@@ -106,5 +138,17 @@ const styles = StyleSheet.create({
   input: {
     width: '80%',
     borderRadius: 10,
+  },
+  loginTitle: {
+    fontSize: 32,
+    width: '100%',
+    color: 'white',
+  },
+  loginTitleContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    paddingHorizontal: 20,
+    paddingVertical: 40,
   },
 });

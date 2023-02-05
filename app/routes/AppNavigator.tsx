@@ -11,8 +11,9 @@ import {
 } from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {StackScreenProps} from '@react-navigation/stack';
-import React from 'react';
+import React, {useContext} from 'react';
 import {useColorScheme} from 'react-native';
+import {UserContext} from '../contexts/UserContext';
 import {Login} from '../screens';
 import {MainNavigator} from './MainNavigator';
 export type AppStackParamList = {
@@ -26,7 +27,7 @@ export type AppStackScreenProps<T extends keyof AppStackParamList> =
 const Stack = createNativeStackNavigator<AppStackParamList>();
 
 const AppStack = function AppStack() {
-  const isAuthenticated = true;
+  const {authenticated: isAuthenticated} = useContext(UserContext);
 
   return (
     <Stack.Navigator

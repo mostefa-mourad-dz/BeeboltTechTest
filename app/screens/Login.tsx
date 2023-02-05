@@ -1,13 +1,14 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {DefaultLayout} from '../layouts/default';
 
 type LoginProps = {};
 
 export const Login: React.FC<LoginProps> = ({}) => {
   return (
-    <View style={styles.container}>
+    <DefaultLayout>
       <Text>Login</Text>
-    </View>
+    </DefaultLayout>
   );
 };
 

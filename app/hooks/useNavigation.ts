@@ -1,5 +1,6 @@
 import {CommonActions, useNavigation} from '@react-navigation/native';
 import {PAGES} from '../constants/pages';
+import {useRoute} from '@react-navigation/native';
 
 type navigationProps = {
   screen?: string;
@@ -59,6 +60,8 @@ export const useStackNavigation = () => {
     navigation.navigate(stack, {screen: screen, params: params});
   };
 
+  const route = useRoute();
+
   return {
     mainNavigation: ({
       screen,
@@ -73,6 +76,9 @@ export const useStackNavigation = () => {
       if (navigation.canGoBack()) {
         navigation.goBack();
       }
+    },
+    getCurrentRouteName: () => {
+      return route?.name;
     },
   };
 };
