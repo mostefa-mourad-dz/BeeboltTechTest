@@ -13,6 +13,7 @@ import {Button, Input} from '@ui-kitten/components';
 import {IconButton} from '../components/IconButton';
 import {UserContext} from '../contexts/UserContext';
 import {useStackNavigation} from '../hooks/useNavigation';
+import {PAGES} from '../constants/pages';
 
 type LoginProps = {};
 
@@ -38,7 +39,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
       firstName: 'Bee',
       lastName: 'Bolt',
     });
-    mainNavigation({reset: true});
+    mainNavigation({reset: true, screen: PAGES.HOME});
   };
   return (
     <DefaultLayout>
