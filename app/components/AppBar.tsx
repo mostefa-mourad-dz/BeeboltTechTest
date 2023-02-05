@@ -3,43 +3,17 @@ import React, {useContext} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {UserContext} from '../contexts/UserContext';
 import {useStackNavigation} from '../hooks/useNavigation';
+import {getAppBarType} from '../utils/appBarType';
 import {CustomAvatar} from './CustomAvatar';
 import {CustomIcon} from './CustomIcon';
 import {IconButton} from './IconButton';
 
-type AppBarProps = {
-  back: boolean;
-  title: string;
-};
+type AppBarProps = {};
 
-type AppBarTypeProps = {
-  show: boolean;
-  back?: boolean;
-  home?: boolean;
-  chat?: boolean;
-  driver?: boolean;
-};
-
-export const AppBar: React.FC<AppBarProps> = ({back, title}) => {
+export const AppBar: React.FC<AppBarProps> = ({}) => {
   const {user} = useContext(UserContext);
-  const {getCurrentRouteName} = useStackNavigation();
-  const appBarType: AppBarTypeProps = (() => {
-    switch (getCurrentRouteName()) {
-      case 'Login':
-        return {
-          show: false,
-        };
-      case 'Home':
-        return {
-          show: true,
-          home: true,
-        };
-      default:
-        return {
-          show: true,
-        };
-    }
-  })();
+  const routeName = useStackNavigation().getCurrentRouteName();
+  const appBarType = getAppBarType(routeName);
   return (
     <>
       {appBarType?.show ? (
@@ -52,18 +26,18 @@ export const AppBar: React.FC<AppBarProps> = ({back, title}) => {
                   <Text style={styles.fullName}>{`${
                     user?.first_name + ' ' + user?.last_name
                   }`}</Text>
-                  <Text style={styles.welcome}>Welcome back!</Text>
+                  <Text style={styles.welcome}>{appBarType.title}</Text>
                 </View>
               </View>
             ) : (
               <View style={styles.leftContainer}>
                 <View style={styles.backBtnStyle}>
-                  {back && (
+                  {appBarType?.back && (
                     <IconButton name="arrow-ios-back-outline" fill="white" />
                   )}
                 </View>
                 <View style={styles.titleContainerStyle}>
-                  <Text style={styles.titleStyle}>{title}</Text>
+                  <Text style={styles.titleStyle}>{appBarType.title}</Text>
                 </View>
               </View>
             )}
@@ -83,7 +57,7 @@ export const AppBar: React.FC<AppBarProps> = ({back, title}) => {
         </>
       ) : (
         <View style={styles.loginTitleContainer}>
-          <Text style={styles.loginTitle}>Welcome to Beebolt!</Text>
+          <Text style={styles.loginTitle}>{appBarType.title}</Text>
         </View>
       )}
     </>

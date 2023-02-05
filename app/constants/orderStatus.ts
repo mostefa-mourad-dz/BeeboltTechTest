@@ -6,7 +6,7 @@ type orderStatus = {
 export const orderStatus: orderStatus[] = [
   {
     status: 'Created',
-    color: '#C76542',
+    color: 'grey',
   },
   {
     status: 'Received',
