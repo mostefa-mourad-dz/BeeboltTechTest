@@ -20,7 +20,6 @@ type AppBarTypeProps = {
 };
 
 export const AppBar: React.FC<AppBarProps> = ({back, title}) => {
-  const isHome = title === 'Home';
   const user = {
     profilePic: 'https://picsum.photos/200/300',
     fullName: 'Robert Smith',
@@ -33,7 +32,11 @@ export const AppBar: React.FC<AppBarProps> = ({back, title}) => {
         return {
           show: false,
         };
-
+      case 'Home':
+        return {
+          show: true,
+          home: true,
+        };
       default:
         return {
           show: true,
@@ -45,7 +48,7 @@ export const AppBar: React.FC<AppBarProps> = ({back, title}) => {
       {appBarType?.show ? (
         <>
           <View style={styles.container}>
-            {isHome ? (
+            {appBarType?.home ? (
               <View style={styles.leftContainer}>
                 <CustomAvatar url={user?.profilePic} />
                 <View style={styles.welcomeTextContainer}>
@@ -68,7 +71,7 @@ export const AppBar: React.FC<AppBarProps> = ({back, title}) => {
             <CustomIcon icon="bell" color="white" size={40} bgColor="#4D579E" />
           </View>
 
-          {isHome && (
+          {appBarType?.home && (
             <View style={styles.inputContainer}>
               <Input
                 style={styles.input}

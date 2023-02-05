@@ -7,6 +7,7 @@ import {IconButton} from '../components/IconButton';
 import {EmptyScreen} from '../screens';
 import {StyleSheet} from 'react-native';
 import {Profile} from '../screens/Profile';
+import {HomeScreen} from '../screens/Home';
 
 const {Navigator, Screen} = createBottomTabNavigator();
 //
@@ -77,7 +78,7 @@ export const MainNavigator = () => (
     initialRouteName={PAGES.HOME}
     backBehavior="history"
     tabBar={props => <BottomTabBar {...props} />}>
-    <Screen name={PAGES.HOME} component={EmptyScreen} />
+    <Screen name={PAGES.HOME} component={HomeScreen} />
     <Screen name={PAGES.ORDERS} component={EmptyScreen} />
     <Screen name={PAGES.ADD_ORDER} component={EmptyScreen} />
     <Screen name={PAGES.CHAT} component={EmptyScreen} />
