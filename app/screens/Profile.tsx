@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {ProfileHeader} from '../components/ProfileHeader';
 import {
   ProfileListItem,
   ProfileListItemProps,
 } from '../components/ProfileListItem';
+import {UserContext} from '../contexts/UserContext';
 import {DefaultLayout} from '../layouts/default';
 
 type ProfileProps = {};
@@ -40,9 +42,11 @@ export const Profile: React.FC<ProfileProps> = ({}) => {
       title: 'Logout',
     },
   ];
+  const {user} = useContext(UserContext);
   return (
     <DefaultLayout>
       <>
+        {user && <ProfileHeader user={user} />}
         {Items?.map((item: ProfileListItemProps) => (
           <ProfileListItem key={item?.icon} {...item} />
         ))}
